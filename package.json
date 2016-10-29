@@ -1,0 +1,28 @@
+{
+  "name": "spug-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp build",
+    "deploy": "gulp deploy",
+    "package": "gulp package",
+  },
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "@types/sharepoint": "^2013.0.31",
+    "typescript": "^2.0.6"
+  },
+  "devDependencies": {
+    "@types/gulp": "^3.8.32",
+    "@types/q": "0.0.32",
+    "child_process": "^1.0.2",
+    "gulp": "^3.9.1",
+    "gulp-spsave": "^3.0.0",
+    "gulp-typescript": "^3.0.2",
+    "gulp-util": "^3.0.7",
+    "windows-credman": "^1.0.0"
+  }
+}

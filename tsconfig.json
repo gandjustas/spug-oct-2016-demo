@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "none",
+        "noImplicitAny": false,
+        "outDir": "build"
+    },
+    "exclude": [
+        "build", "node_modules", "template" 
+    ]
+}

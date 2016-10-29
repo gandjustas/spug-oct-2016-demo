@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2016/05/ProvisioningSchema">
+  <pnp:Preferences Generator="OfficeDevPnP.Core, Version=2.8.1610.1, Culture=neutral, PublicKeyToken=3751622786b357c2" />
+  <pnp:Templates ID="CONTAINER-TEMPLATE-D3D22995D9FB44ADA2AD56FBCC14E759">
+    <pnp:ProvisioningTemplate ID="TEMPLATE-D3D22995D9FB44ADA2AD56FBCC14E759" Version="1" BaseSiteTemplate="STS#0">
+      <pnp:SupportedUILanguages>
+        <pnp:SupportedUILanguage LCID="1049" />
+      </pnp:SupportedUILanguages>
+      <pnp:SiteFields>
+        <Field Type="DateTime" DisplayName="Дата начала отсутствия" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" Group="Демо" FriendlyDisplayFormat="Disabled" ID="{1a412c34-39a7-41b3-ad05-90740b34f2a8}" SourceID="{e4090a98-206d-43e1-9bc6-0d37d2d58437}" StaticName="LeaveDateFrom" Name="LeaveDateFrom" CalType="0">
+          <Default>[today]</Default>
+        </Field>
+        <Field Type="Choice" DisplayName="Причина отсутствия" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="RadioButtons" FillInChoice="FALSE" Group="Демо" ID="{5ddb1c36-c345-4274-81fc-1a78a57c6bce}" SourceID="{e4090a98-206d-43e1-9bc6-0d37d2d58437}" StaticName="LeaveType" Name="LeaveType">
+          <Default>Отгул</Default>
+          <CHOICES>
+            <CHOICE>Отгул</CHOICE>
+            <CHOICE>Очередной отпуск</CHOICE>
+            <CHOICE>Отпуск за свой счет</CHOICE>
+          </CHOICES>
+        </Field>
+        <Field Type="DateTime" DisplayName="Дата окончания отсутствия" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" Group="Демо" FriendlyDisplayFormat="Disabled" ID="{691def9f-1f60-4b95-8689-3feb966b1ce3}" SourceID="{e4090a98-206d-43e1-9bc6-0d37d2d58437}" StaticName="LeaveDateTo" Name="LeaveDateTo" CalType="0">
+        </Field>
+        <Field Type="Boolean" DisplayName="Согласовано?" EnforceUniqueValues="FALSE" Indexed="FALSE" Group="Демо" ID="{3cdff6a0-04e2-413e-8092-969860ede06a}" SourceID="{e4090a98-206d-43e1-9bc6-0d37d2d58437}" StaticName="LeaveApproved" Name="LeaveApproved" Required="FALSE" ShowInEditForm="TRUE" ShowInNewForm="TRUE">
+          <Default>0</Default>
+        </Field>
+      </pnp:SiteFields>
+      <pnp:ContentTypes>
+        <pnp:ContentType ID="0x0100C1EF0F5564CAB741BEE4F44FF0716068" Name="Отсутствие" Description="Создание элемента списка." Group="Демо" NewFormUrl="" EditFormUrl="" DisplayFormUrl="">
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="c042a256-787d-4a6f-8a8a-cf6ab767f12d" Name="ContentType" />
+            <pnp:FieldRef ID="fa564e0f-0c70-4ab9-b863-0177e6ddd247" Name="Title" Required="true" />
+            <pnp:FieldRef ID="5ddb1c36-c345-4274-81fc-1a78a57c6bce" Name="LeaveType" Required="true" />
+            <pnp:FieldRef ID="1a412c34-39a7-41b3-ad05-90740b34f2a8" Name="LeaveDateFrom" Required="true" />
+            <pnp:FieldRef ID="691def9f-1f60-4b95-8689-3feb966b1ce3" Name="LeaveDateTo" Required="true" />
+            <pnp:FieldRef ID="3cdff6a0-04e2-413e-8092-969860ede06a" Name="LeaveApproved" />
+          </pnp:FieldRefs>
+        </pnp:ContentType>
+      </pnp:ContentTypes>
+      <pnp:Lists>
+        <pnp:ListInstance Title="Журнал рабочего процесса" Description="" DocumentTemplate="" TemplateType="140" Url="Lists/Workflow History" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-4ea5-48d4-a4ad-305cf7030140" Hidden="true" EnableAttachments="false" EnableFolderCreation="false">
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Задачи рабочего процесса" Description="" DocumentTemplate="" TemplateType="171" Url="Lists/Workflow Tasks" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="f9ce21f8-f437-4f7e-8bc6-946378c850f0" ContentTypesEnabled="true" EnableFolderCreation="false">
+        </pnp:ListInstance>
+        <pnp:ListInstance Title="Согласование отпусков и отгулов" Description="" DocumentTemplate="" OnQuickLaunch="true" TemplateType="100" Url="Lists/LeaveRequests" MinorVersionLimit="0" MaxVersionLimit="0" DraftVersionVisibility="0" TemplateFeatureID="00bfea71-de22-43b2-a848-c05709900100" ContentTypesEnabled="true" EnableFolderCreation="false">
+          <pnp:ContentTypeBindings>
+            <pnp:ContentTypeBinding ContentTypeID="0x0100C1EF0F5564CAB741BEE4F44FF0716068" Default="true" />
+            <pnp:ContentTypeBinding ContentTypeID="0x0120" />
+          </pnp:ContentTypeBindings>
+          <pnp:Views>
+            <View Name="{2D85240C-DE4E-4163-B727-E0F9566C6E9B}" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" Type="HTML" DisplayName="Все элементы" Url="/sites/dev/Lists/LeaveRequests/AllItems.aspx" Level="1" BaseViewID="1" ContentTypeID="0x" ImageUrl="/_layouts/15/images/generic.png?rev=44">
+              <Query>
+                <OrderBy>
+                  <FieldRef Name="ID" />
+                </OrderBy>
+              </Query>
+              <ViewFields>
+                <FieldRef Name="LinkTitle" />
+                <FieldRef Name="LeaveType" />
+                <FieldRef Name="LeaveDateFrom" />
+                <FieldRef Name="LeaveDateTo" />
+                <FieldRef Name="LeaveApproved" />
+              </ViewFields>
+              <RowLimit Paged="TRUE">30</RowLimit>
+              <Aggregations Value="Off" />
+              <JSLink>clienttemplates.js</JSLink>
+            </View>
+          </pnp:Views>
+          <pnp:Fields>
+            <Field DisplayName="Согласование отпуска или отгула" Type="URL" Required="FALSE" ID="{feacf8a5-24b3-4eaa-9477-010083ec78e6}" SourceID="{{listid:Согласование отпусков и отгулов}}" StaticName="_x0421__x043e__x0433__x043b__x04" Name="_x0421__x043e__x0433__x043b__x04" ColName="nvarchar4" RowOrdinal="0" ColName2="nvarchar5" RowOrdinal2="0" Version="2" ShowInDisplayForm="FALSE" ShowInEditForm="FALSE" ShowInNewForm="FALSE" />
+          </pnp:Fields>
+          <pnp:FieldRefs>
+            <pnp:FieldRef ID="5ddb1c36-c345-4274-81fc-1a78a57c6bce" Name="LeaveType" DisplayName="Причина отсутствия" />
+            <pnp:FieldRef ID="1a412c34-39a7-41b3-ad05-90740b34f2a8" Name="LeaveDateFrom" DisplayName="Дата начала отсутствия" />
+            <pnp:FieldRef ID="691def9f-1f60-4b95-8689-3feb966b1ce3" Name="LeaveDateTo" DisplayName="Дата окончания отсутствия" />
+            <pnp:FieldRef ID="3cdff6a0-04e2-413e-8092-969860ede06a" Name="LeaveApproved" DisplayName="Согласовано?" />
+          </pnp:FieldRefs>
+        </pnp:ListInstance>
+      </pnp:Lists>
+      <pnp:Files>
+        <pnp:File Src="tstmpl.js" Folder="SiteAssets/LeaveForm" Overwrite="true"/>
+        <pnp:File Src="leave.js" Folder="SiteAssets/LeaveForm" Overwrite="true"/>
+      </pnp:Files>
+      <pnp:Workflows>
+        <pnp:WorkflowDefinitions>
+          <pnp:WorkflowDefinition Id="2337ae8d-ac8b-4c19-a674-d29c4eb419ba" Description="" DisplayName="Согласование отпуска или отгула" InitiationUrl="" Published="true" RequiresAssociationForm="false" RequiresInitiationForm="false" RestrictToScope="{listid:Согласование отпусков и отгулов}" RestrictToType="List" XamlPath="2337ae8d-ac8b-4c19-a674-d29c4eb419ba.xaml">
+            <pnp:Properties>
+              <pnp:Property Key="WSPublishState" Value="3" />
+              <pnp:Property Key="RestrictToScope" Value="{listid:Согласование отпусков и отгулов}" />
+              <pnp:Property Key="SPDConfig.StartOnCreate" Value="false" />
+              <pnp:Property Key="HistoryListId" Value="{listid:Журнал рабочего процесса}" />
+              <pnp:Property Key="ContentTypeId" Value="0x01002A2479FF33DD4BC3B1533A012B653717000C388EDACE358D46860BCD62E8B3CD28" />
+              <pnp:Property Key="Definition.Description" Value="" />
+              <pnp:Property Key="vti_modifiedby" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:Property Key="vti_parserversion" Value="16.0.0.5813" />
+              <pnp:Property Key="SubscriptionId" Value="{A16073CF-43B1-4FED-AD63-FE744769073D}" />
+              <pnp:Property Key="FormField" Value="&lt;Fields /&gt;" />
+              <pnp:Property Key="vti_author" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:Property Key="vti_foldersubfolderitemcount" Value="0" />
+              <pnp:Property Key="vti_writevalidationtoken" Value="/uOVQ+Z24vrMdiXus9BtbBsgIJ0=" />
+              <pnp:Property Key="InitiationUrl" Value="" />
+              <pnp:Property Key="Definition.DisplayName" Value="Согласование отпуска или отгула" />
+              <pnp:Property Key="IsProjectMode" Value="false" />
+              <pnp:Property Key="SubscriptionName" Value="Согласование отпуска или отгула" />
+              <pnp:Property Key="SPDConfig.LastEditMode" Value="TextBased" />
+              <pnp:Property Key="isReusable" Value="false" />
+              <pnp:Property Key="AutosetStatusToStageName" Value="true" />
+              <pnp:Property Key="SPDConfig.StartOnChange" Value="false" />
+              <pnp:Property Key="vti_folderitemcount" Value="0" />
+              <pnp:Property Key="SPDConfig.StartManually" Value="true" />
+              <pnp:Property Key="Definition.Id" Value="2337ae8d-ac8b-4c19-a674-d29c4eb419ba" />
+              <pnp:Property Key="RequiresInitiationForm" Value="false" />
+              <pnp:Property Key="RestrictToType" Value="List" />
+              <pnp:Property Key="TaskListId" Value="{listid:Задачи рабочего процесса}" />
+              <pnp:Property Key="Definition.Name" Value="workflow.xaml" />
+              <pnp:Property Key="Definition.ListItemId" Value="2" />
+              <pnp:Property Key="ContentType" Value="WorkflowServiceDefinition" />
+              <pnp:Property Key="Definition.CreatedDate" Value="26.10.2016 4:28:18" />
+              <pnp:Property Key="Definition.AuthorId" Value="6;#Станислав Выщепан,#i:0#.f|membership|stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#Станислав Выщепан" />
+              <pnp:Property Key="Definition.ModifiedDate" Value="26.10.2016 4:41:17" />
+              <pnp:Property Key="Definition.EditorId" Value="6;#Станислав Выщепан,#i:0#.f|membership|stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#Станислав Выщепан" />
+              <pnp:Property Key="_ModerationStatus" Value="0" />
+              <pnp:Property Key="Definition.FullName" Value="/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba/workflow.xaml" />
+              <pnp:Property Key="Definition.Path" Value="/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba" />
+              <pnp:Property Key="Definition.ModifiedDateUTC" Value="26.10.2016 11:41:17" />
+              <pnp:Property Key="Definition.CreatedDateUTC" Value="26.10.2016 11:28:18" />
+              <pnp:Property Key="File_x0020_Size" Value="26574" />
+              <pnp:Property Key="FSObjType" Value="0" />
+              <pnp:Property Key="SortBehavior" Value="2;#0" />
+              <pnp:Property Key="PermMask" Value="0x7fffffffffffffff" />
+              <pnp:Property Key="CheckedOutUserId" Value="2;#" />
+              <pnp:Property Key="IsCheckedoutToLocal" Value="0" />
+              <pnp:Property Key="UniqueId" Value="2deff0e1-ff63-4dd9-96eb-af535ef7fe6b" />
+              <pnp:Property Key="SyncClientId" Value="2;#" />
+              <pnp:Property Key="ProgId" Value="" />
+              <pnp:Property Key="ScopeId" Value="{89E079FE-CA05-44AE-8F39-D0F8BEB58FCF}" />
+              <pnp:Property Key="VirusStatus" Value="2;#26574" />
+              <pnp:Property Key="CheckedOutTitle" Value="2;#" />
+              <pnp:Property Key="_CheckinComment" Value="" />
+              <pnp:Property Key="Definition.EditorLogin" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:Property Key="Definition.AuthorLogin" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:Property Key="File_x0020_Type" Value="xaml" />
+              <pnp:Property Key="_EditMenuTableStart" Value="workflow.xaml" />
+              <pnp:Property Key="_EditMenuTableStart2" Value="2" />
+              <pnp:Property Key="_EditMenuTableEnd" Value="2" />
+              <pnp:Property Key="LinkFilenameNoMenu" Value="workflow.xaml" />
+              <pnp:Property Key="LinkFilename" Value="workflow.xaml" />
+              <pnp:Property Key="LinkFilename2" Value="workflow.xaml" />
+              <pnp:Property Key="DocIcon" Value="xaml" />
+              <pnp:Property Key="ServerUrl" Value="/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba/workflow.xaml" />
+              <pnp:Property Key="EncodedAbsUrl" Value="https://gandjustas.sharepoint.com/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba/workflow.xaml" />
+              <pnp:Property Key="BaseName" Value="workflow" />
+              <pnp:Property Key="FileSizeDisplay" Value="26574" />
+              <pnp:Property Key="MetaInfo" Value="SPDConfig.StartManually:SW|true&#xD;&#xA;vti_parserversion:SR|16.0.0.5813&#xD;&#xA;WSDescription:SW|&#xD;&#xA;IsProjectMode:SW|false&#xD;&#xA;WSGUID:SW|2337ae8d-ac8b-4c19-a674-d29c4eb419ba&#xD;&#xA;WSDisplayName:SW|Согласование отпуска или отгула&#xD;&#xA;WSPublishState:IW|3&#xD;&#xA;vti_author:SR|i:0#.f|membership|stanislav.v@vnextsoft.ru&#xD;&#xA;SPDConfig.StartOnChange:SW|false&#xD;&#xA;AutosetStatusToStageName:SW|true&#xD;&#xA;SubscriptionName:SW|Согласование отпуска или отгула&#xD;&#xA;vti_writevalidationtoken:SW|/uOVQ+Z24vrMdiXus9BtbBsgIJ0=&#xD;&#xA;RestrictToScope:SW|DC4975DC-FE72-47A9-B057-4499DBF9ECBF&#xD;&#xA;HistoryListId:SW|{6E18C2D2-0226-4179-AD6C-FB9992B31B7E}&#xD;&#xA;RestrictToType:SW|List&#xD;&#xA;vti_foldersubfolderitemcount:IW|0&#xD;&#xA;vti_modifiedby:SR|i:0#.f|membership|stanislav.v@vnextsoft.ru&#xD;&#xA;ContentTypeId:SW|0x01002A2479FF33DD4BC3B1533A012B653717000C388EDACE358D46860BCD62E8B3CD28&#xD;&#xA;SPDConfig.StartOnCreate:SW|false&#xD;&#xA;FileLeafRef:SW|workflow.xaml&#xD;&#xA;InitiationUrl:SW|&#xD;&#xA;RequiresInitiationForm:SW|false&#xD;&#xA;SubscriptionId:SW|{A16073CF-43B1-4FED-AD63-FE744769073D}&#xD;&#xA;TaskListId:SW|{AB7627A9-61AA-4610-BAFC-A4DC0D932AE5}&#xD;&#xA;FormField:SW|&lt;Fields /&gt;&#xD;&#xA;SPDConfig.LastEditMode:SW|TextBased&#xD;&#xA;vti_folderitemcount:IW|0&#xD;&#xA;isReusable:SW|false&#xD;&#xA;" />
+              <pnp:Property Key="_Level" Value="1" />
+              <pnp:Property Key="_IsCurrentVersion" Value="True" />
+              <pnp:Property Key="ItemChildCount" Value="0" />
+              <pnp:Property Key="FolderChildCount" Value="0" />
+              <pnp:Property Key="Restricted" Value="" />
+              <pnp:Property Key="OriginatorId" Value="" />
+              <pnp:Property Key="NoExecute" Value="0" />
+              <pnp:Property Key="ContentVersion" Value="5" />
+              <pnp:Property Key="_ComplianceFlags" Value="" />
+              <pnp:Property Key="_ComplianceTag" Value="" />
+              <pnp:Property Key="_ComplianceTagWrittenTime" Value="" />
+              <pnp:Property Key="_ComplianceTagUserId" Value="" />
+              <pnp:Property Key="BSN" Value="254" />
+              <pnp:Property Key="_IsRecord" Value="2" />
+              <pnp:Property Key="SMTotalSize" Value="198621" />
+              <pnp:Property Key="SMLastModifiedDate" Value="2016-10-26 04:41:17" />
+              <pnp:Property Key="SMTotalFileStreamSize" Value="26574" />
+              <pnp:Property Key="SMTotalFileCount" Value="1" />
+              <pnp:Property Key="SelectTitle" Value="2" />
+              <pnp:Property Key="SelectFilename" Value="2" />
+              <pnp:Property Key="Edit" Value="0" />
+              <pnp:Property Key="owshiddenversion" Value="10" />
+              <pnp:Property Key="_UIVersion" Value="5120" />
+              <pnp:Property Key="_UIVersionString" Value="10.0" />
+              <pnp:Property Key="Order" Value="200" />
+              <pnp:Property Key="GUID" Value="{4ABC956D-5A8C-44F8-95A5-C07FC79F3577}" />
+              <pnp:Property Key="WorkflowVersion" Value="1" />
+              <pnp:Property Key="ParentVersionString" Value="2;#" />
+              <pnp:Property Key="ParentLeafName" Value="2;#" />
+              <pnp:Property Key="DocConcurrencyNumber" Value="10" />
+              <pnp:Property Key="ParentUniqueId" Value="{0DB03E6F-E925-41F1-964D-F5E1711DEB25}" />
+              <pnp:Property Key="StreamHash" Value="0x02FEE39543E676E2FACC7625EEB3D06D6C1B20209D" />
+              <pnp:Property Key="ModifiedBy" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+            </pnp:Properties>
+            <pnp:FormField>
+              <Fields />
+            </pnp:FormField>
+          </pnp:WorkflowDefinition>
+        </pnp:WorkflowDefinitions>
+        <pnp:WorkflowSubscriptions>
+          <pnp:WorkflowSubscription DefinitionId="2337ae8d-ac8b-4c19-a674-d29c4eb419ba" ListId="{listid:Согласование отпусков и отгулов}" Enabled="true" EventSourceId="{listid:Согласование отпусков и отгулов}" WorkflowStartEvent="true" ItemAddedEvent="false" ItemUpdatedEvent="false" ManualStartBypassesActivationLimit="false" Name="Согласование отпуска или отгула" ParentContentTypeId="" StatusFieldName="OData__x0421__x043e__x0433__x043b__x04">
+            <pnp:PropertyDefinitions>
+              <pnp:PropertyDefinition Key="StatusColumnCreated" Value="1" />
+              <pnp:PropertyDefinition Key="Microsoft.SharePoint.ActivationProperties.ListId" Value="dc4975dc-fe72-47a9-b057-4499dbf9ecbf" />
+              <pnp:PropertyDefinition Key="WSEventContextKeys" Value="StatusColumnCreated;#WorkflowService&#xD;&#xA;CreatedBySPD;#WorkflowService&#xD;&#xA;CurrentWebUri;#WorkflowService&#xD;&#xA;HistoryListId;#WorkflowService&#xD;&#xA;SharePointWorkflowContext.ActivationProperties.SiteId;#WorkflowService&#xD;&#xA;TaskListId;#WorkflowService&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ParentContentTypeId;#Instance&#xD;&#xA;SharePointWorkflowContext.ActivationProperties.WebId;#WorkflowService&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ListId;#WorkflowService&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ListName;#WorkflowService&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.CurrentItemUrl;#Instance&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ItemId;#Instance&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ItemGuid;#Instance&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.UniqueId;#Instance&#xD;&#xA;StatusFieldName;#WorkflowService&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.RelatedItems;#Instance&#xD;&#xA;" />
+              <pnp:PropertyDefinition Key="WSPublishState" Value="3" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.EventSourceId" Value="dc4975dc-fe72-47a9-b057-4499dbf9ecbf" />
+              <pnp:PropertyDefinition Key="HistoryListId" Value="{listid:Журнал рабочего процесса}" />
+              <pnp:PropertyDefinition Key="CurrentWebUri" Value="https://gandjustas.sharepoint.com/sites/dev" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.EventType" Value="WorkflowStart#;" />
+              <pnp:PropertyDefinition Key="vti_modifiedby" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:PropertyDefinition Key="StatusFieldName" Value="OData__x0421__x043e__x0433__x043b__x04" />
+              <pnp:PropertyDefinition Key="CreatedBySPD" Value="1" />
+              <pnp:PropertyDefinition Key="vti_parserversion" Value="16.0.0.5813" />
+              <pnp:PropertyDefinition Key="vti_author" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:PropertyDefinition Key="vti_foldersubfolderitemcount" Value="0" />
+              <pnp:PropertyDefinition Key="vti_writevalidationtoken" Value="AAAAAAAAAAAAAAAAAAAAAAAAAAA=" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.DisplayName" Value="Согласование отпуска или отгула" />
+              <pnp:PropertyDefinition Key="WSEnabled" Value="TRUE" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.ActivationProperties.SiteId" Value="68759D01-2ED4-465B-BFA4-3EE522D5CB2C" />
+              <pnp:PropertyDefinition Key="vti_folderitemcount" Value="0" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.Id" Value="a16073cf-43b1-4fed-ad63-fe744769073d" />
+              <pnp:PropertyDefinition Key="vti_privatelistexempt" Value="true" />
+              <pnp:PropertyDefinition Key="TaskListId" Value="{listid:Задачи рабочего процесса}" />
+              <pnp:PropertyDefinition Key="ContentTypeId" Value="0x0100AA27A923036E459D9EF0D18BBD0B9587007851D19B6956E54DA55A56E6009DF321" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.Name" Value="WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="Microsoft.SharePoint.ActivationProperties.ParentContentTypeId" Value="" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.ActivationProperties.WebId" Value="E4090A98-206D-43E1-9BC6-0D37D2D58437" />
+              <pnp:PropertyDefinition Key="Microsoft.SharePoint.ActivationProperties.ListName" Value="Согласование отпусков и отгулов" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.ListItemId" Value="3" />
+              <pnp:PropertyDefinition Key="ContentType" Value="WorkflowServiceSubscription" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.CreatedDate" Value="26.10.2016 4:41:21" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.AuthorId" Value="6;#Станислав Выщепан,#i:0#.f|membership|stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#Станислав Выщепан" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.ModifiedDate" Value="26.10.2016 4:41:45" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.EditorId" Value="6;#Станислав Выщепан,#i:0#.f|membership|stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#stanislav.v@vnextsoft.ru,#Станислав Выщепан" />
+              <pnp:PropertyDefinition Key="_ModerationStatus" Value="0" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.FullName" Value="/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba/WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.Path" Value="/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.ModifiedDateUTC" Value="26.10.2016 11:41:45" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.CreatedDateUTC" Value="26.10.2016 11:41:21" />
+              <pnp:PropertyDefinition Key="File_x0020_Size" Value="0" />
+              <pnp:PropertyDefinition Key="FSObjType" Value="0" />
+              <pnp:PropertyDefinition Key="SortBehavior" Value="3;#0" />
+              <pnp:PropertyDefinition Key="PermMask" Value="0x7fffffffffffffff" />
+              <pnp:PropertyDefinition Key="CheckedOutUserId" Value="3;#" />
+              <pnp:PropertyDefinition Key="IsCheckedoutToLocal" Value="0" />
+              <pnp:PropertyDefinition Key="UniqueId" Value="410218f0-126c-43c7-8873-ce172166e8eb" />
+              <pnp:PropertyDefinition Key="SyncClientId" Value="3;#" />
+              <pnp:PropertyDefinition Key="ProgId" Value="" />
+              <pnp:PropertyDefinition Key="ScopeId" Value="{89E079FE-CA05-44AE-8F39-D0F8BEB58FCF}" />
+              <pnp:PropertyDefinition Key="VirusStatus" Value="3;#0" />
+              <pnp:PropertyDefinition Key="CheckedOutTitle" Value="3;#" />
+              <pnp:PropertyDefinition Key="_CheckinComment" Value="" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.EditorLogin" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:PropertyDefinition Key="SharePointWorkflowContext.Subscription.AuthorLogin" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+              <pnp:PropertyDefinition Key="_EditMenuTableStart" Value="WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="_EditMenuTableStart2" Value="3" />
+              <pnp:PropertyDefinition Key="_EditMenuTableEnd" Value="3" />
+              <pnp:PropertyDefinition Key="LinkFilenameNoMenu" Value="WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="LinkFilename" Value="WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="LinkFilename2" Value="WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="ServerUrl" Value="/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba/WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="EncodedAbsUrl" Value="https://gandjustas.sharepoint.com/sites/dev/wfsvc/2337ae8dac8b4c19a674d29c4eb419ba/WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="BaseName" Value="WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a" />
+              <pnp:PropertyDefinition Key="FileSizeDisplay" Value="0" />
+              <pnp:PropertyDefinition Key="MetaInfo" Value="vti_parserversion:SR|16.0.0.5813&#xD;&#xA;WSGUID:SW|a16073cf-43b1-4fed-ad63-fe744769073d&#xD;&#xA;WSDisplayName:SW|Согласование отпуска или отгула&#xD;&#xA;WSEnabled:BW|TRUE&#xD;&#xA;WSPublishState:IW|3&#xD;&#xA;CreatedBySPD:SW|1&#xD;&#xA;vti_author:SR|i:0#.f|membership|stanislav.v@vnextsoft.ru&#xD;&#xA;vti_writevalidationtoken:SW|AAAAAAAAAAAAAAAAAAAAAAAAAAA=&#xD;&#xA;HistoryListId:SW|6E18C2D2-0226-4179-AD6C-FB9992B31B7E&#xD;&#xA;WSEventSourceGUID:SW|dc4975dc-fe72-47a9-b057-4499dbf9ecbf&#xD;&#xA;WSEventType:SW|WorkflowStart#;&#xD;&#xA;vti_modifiedby:SR|i:0#.f|membership|stanislav.v@vnextsoft.ru&#xD;&#xA;vti_foldersubfolderitemcount:IR|0&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ListId:SW|dc4975dc-fe72-47a9-b057-4499dbf9ecbf&#xD;&#xA;vti_privatelistexempt:BW|true&#xD;&#xA;FileLeafRef:SW|WorkflowAssociation_15269e23afd245ae98bab7e02dcc269a&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ListName:SW|Согласование отпусков и отгулов&#xD;&#xA;WSEventContextKeys:SW|StatusColumnCreated;#WorkflowService\r\nCreatedBySPD;#WorkflowService\r\nCurrentWebUri;#WorkflowService\r\nHistoryListId;#WorkflowService\r\nSharePointWorkflowContext.ActivationProperties.SiteId;#WorkflowService\r\nTaskListId;#WorkflowService\r\nMicrosoft.SharePoint.ActivationProperties.ParentContentTypeId;#Instance\r\nSharePointWorkflowContext.ActivationProperties.WebId;#WorkflowService\r\nMicrosoft.SharePoint.ActivationProperties.ListId;#WorkflowService\r\nMicrosoft.SharePoint.ActivationProperties.ListName;#WorkflowService\r\nMicrosoft.SharePoint.ActivationProperties.CurrentItemUrl;#Instance\r\nMicrosoft.SharePoint.ActivationProperties.ItemId;#Instance\r\nMicrosoft.SharePoint.ActivationProperties.ItemGuid;#Instance\r\nMicrosoft.SharePoint.ActivationProperties.UniqueId;#Instance\r\nStatusFieldName;#WorkflowService\r\nMicrosoft.SharePoint.ActivationProperties.RelatedItems;#Instance\r\n&#xD;&#xA;Microsoft.SharePoint.ActivationProperties.ParentContentTypeId:SW|&#xD;&#xA;ContentTypeId:SW|0x0100AA27A923036E459D9EF0D18BBD0B9587007851D19B6956E54DA55A56E6009DF321&#xD;&#xA;StatusColumnCreated:SW|1&#xD;&#xA;SharePointWorkflowContext.ActivationProperties.WebId:SW|E4090A98-206D-43E1-9BC6-0D37D2D58437&#xD;&#xA;CurrentWebUri:SW|https://gandjustas.sharepoint.com/sites/dev&#xD;&#xA;TaskListId:SW|AB7627A9-61AA-4610-BAFC-A4DC0D932AE5&#xD;&#xA;StatusFieldName:SW|OData__x0421__x043e__x0433__x043b__x04&#xD;&#xA;SharePointWorkflowContext.ActivationProperties.SiteId:SW|68759D01-2ED4-465B-BFA4-3EE522D5CB2C&#xD;&#xA;vti_folderitemcount:IR|0&#xD;&#xA;" />
+              <pnp:PropertyDefinition Key="_Level" Value="1" />
+              <pnp:PropertyDefinition Key="_IsCurrentVersion" Value="True" />
+              <pnp:PropertyDefinition Key="ItemChildCount" Value="0" />
+              <pnp:PropertyDefinition Key="FolderChildCount" Value="0" />
+              <pnp:PropertyDefinition Key="Restricted" Value="" />
+              <pnp:PropertyDefinition Key="OriginatorId" Value="" />
+              <pnp:PropertyDefinition Key="NoExecute" Value="0" />
+              <pnp:PropertyDefinition Key="ContentVersion" Value="1" />
+              <pnp:PropertyDefinition Key="_ComplianceFlags" Value="" />
+              <pnp:PropertyDefinition Key="_ComplianceTag" Value="" />
+              <pnp:PropertyDefinition Key="_ComplianceTagWrittenTime" Value="" />
+              <pnp:PropertyDefinition Key="_ComplianceTagUserId" Value="" />
+              <pnp:PropertyDefinition Key="BSN" Value="150" />
+              <pnp:PropertyDefinition Key="_IsRecord" Value="3" />
+              <pnp:PropertyDefinition Key="SMTotalSize" Value="1080" />
+              <pnp:PropertyDefinition Key="SMLastModifiedDate" Value="2016-10-26 04:41:45" />
+              <pnp:PropertyDefinition Key="SMTotalFileStreamSize" Value="0" />
+              <pnp:PropertyDefinition Key="SMTotalFileCount" Value="1" />
+              <pnp:PropertyDefinition Key="SelectTitle" Value="3" />
+              <pnp:PropertyDefinition Key="SelectFilename" Value="3" />
+              <pnp:PropertyDefinition Key="Edit" Value="0" />
+              <pnp:PropertyDefinition Key="owshiddenversion" Value="2" />
+              <pnp:PropertyDefinition Key="_UIVersion" Value="512" />
+              <pnp:PropertyDefinition Key="_UIVersionString" Value="1.0" />
+              <pnp:PropertyDefinition Key="Order" Value="300" />
+              <pnp:PropertyDefinition Key="GUID" Value="{D2EF61D7-D01B-4397-8526-1F91DD898C88}" />
+              <pnp:PropertyDefinition Key="WorkflowVersion" Value="1" />
+              <pnp:PropertyDefinition Key="ParentVersionString" Value="3;#" />
+              <pnp:PropertyDefinition Key="ParentLeafName" Value="3;#" />
+              <pnp:PropertyDefinition Key="DocConcurrencyNumber" Value="2" />
+              <pnp:PropertyDefinition Key="ParentUniqueId" Value="{0DB03E6F-E925-41F1-964D-F5E1711DEB25}" />
+              <pnp:PropertyDefinition Key="StreamHash" Value="0x020000000000000000000000000000000000000000" />
+              <pnp:PropertyDefinition Key="ModifiedBy" Value="i:0#.f|membership|stanislav.v@vnextsoft.ru" />
+            </pnp:PropertyDefinitions>
+          </pnp:WorkflowSubscription>
+        </pnp:WorkflowSubscriptions>
+      </pnp:Workflows>
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>
