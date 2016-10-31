@@ -1,0 +1,21 @@
+{
+  "name": "spug-demo",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "gandjustas <gandjustas@mail.ru>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/gandjustas/spug-oct-2016-demo",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "typescripttemplates": "*"
+  }
+}

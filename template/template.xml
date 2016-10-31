@@ -77,7 +77,7 @@
         </pnp:ListInstance>
       </pnp:Lists>
       <pnp:Files>
-        <pnp:File Src="tstmpl.js" Folder="SiteAssets/LeaveForm" Overwrite="true"/>
+        <pnp:File Src="sp-ts-csr.js" Folder="SiteAssets/LeaveForm" Overwrite="true"/>
         <pnp:File Src="leave.js" Folder="SiteAssets/LeaveForm" Overwrite="true"/>
       </pnp:Files>
       <pnp:Workflows>

@@ -29,7 +29,7 @@ module _ {
             .register();        
     }
 
-    SP.SOD.executeOrDelayUntilScriptLoaded(init, "tstmpl.ts");
+    SP.SOD.executeOrDelayUntilScriptLoaded(init, "sp-ts-csr.ts");
 
     SP.SOD.executeOrDelayUntilScriptLoaded(function () {
         RegisterModuleInit(SPClientTemplates.Utility.ReplaceUrlTokens("~site/SiteAssets/LeaveForm/leave.js"), init);

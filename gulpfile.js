@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var ts = require('gulp-typescript');
 var spsave = require('gulp-spsave');
+var flatten = require('gulp-flatten');
 var exec = require('child_process').exec;
 
 var creds = require("windows-credman").getCredentials("vnextsoft");
@@ -12,11 +13,12 @@ gulp.task('build', function() {
     var tsResult = tsProject.src() 
         .pipe(tsProject());
 
-    return tsResult.js.pipe(gulp.dest('build'));
+    return tsResult.js.pipe(flatten()).pipe(gulp.dest('build'));
 });
 
 gulp.task('spsave', ['build'],  function() {
   return gulp.src("./build/*.js")
+             
              .pipe(spsave({
                     siteUrl: "https://gandjustas.sharepoint.com/sites/dev",
                     folder: "SiteAssets/LeaveForm"
